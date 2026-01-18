@@ -1,0 +1,136 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+    "height": 34, 
+    "spacing": 5, 
+
+    // --- URUTAN MODUL ---
+    "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["group/hardware", "group/utils", "custom/notification", "custom/power"],
+
+    // --- LOGO (Pemanis di kiri) ---
+    "custom/logo": {
+        "format": "",
+        "tooltip": false
+    },
+
+    // --- GRUP HARDWARE (Disatukan jadi satu kapsul) ---
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": ["cpu", "custom/gpu", "memory"]
+    },
+    
+    // --- GRUP UTILS (Disatukan jadi satu kapsul) ---
+    "group/utils": {
+        "orientation": "horizontal",
+        "modules": ["network", "bluetooth", "pulseaudio", "battery"]
+    },
+
+    // --- WORKSPACES ---
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "1": [], "2": [], "3": [], "4": [], "5": []
+        },
+        "format-icons": {
+            "1": "一", "2": "二", "3": "三", "4": "四", "5": "五",
+            "default": "", 
+            "active": "", 
+            "urgent": ""
+        }
+    },
+    
+    "hyprland/window": { 
+        "max-length": 30,
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "🌎 Firefox",
+            "(.*) - Visual Studio Code": "💻 VSCode",
+            "(.*) - Kitty": " Terminal",
+            "^$": "Desktop"
+        }
+    },
+
+    // --- HARDWARE MONITORS ---
+    "cpu": { 
+        "format": " {usage}%", 
+        "tooltip": false,
+        "interval": 2
+    },
+
+    "custom/gpu": {
+        // Command ini khusus NVIDIA (Lebih akurat buat ASUS TUF)
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "󰢮 {}%",
+        "return-type": "",
+        "interval": 3,
+        "tooltip": false
+    },
+
+    "memory": { "format": " {percentage}%" },
+
+    // --- CLOCK ---
+    "clock": {
+        "format": "{:%H:%M}  ",
+        "format-alt": "{:%A, %d %B}  ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
+
+    // --- UTILS ---
+    "bluetooth": {
+        "format": "",
+        "format-connected": "",
+        "tooltip-format": "{device_alias}",
+        "on-click": "blueman-manager"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": { "default": ["", "", ""] },
+        "on-click": "pavucontrol"
+    },
+
+    "network": {
+        "format-wifi": " ",
+        "format-ethernet": " ",
+        "format-disconnected": "⚠ "
+    },
+
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='#ff5555'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='#ff5555'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='#ff5555'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='#ff5555'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "escape": true
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "wlogout"
+    }
+}

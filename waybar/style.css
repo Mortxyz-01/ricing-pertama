@@ -1,0 +1,112 @@
+/* --- GLOBAL RESET --- */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP", sans-serif;
+    font-weight: 600; /* Gak terlalu tebal */
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #ffffff;
+}
+
+/* --- TOOLTIP (Popup kalau mouse diem) --- */
+tooltip {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* --- BASE MODULE STYLE (Kapsul Kaca Gelap) --- */
+#custom-logo,
+#workspaces,
+#window,
+#clock,
+#hardware,  
+#utils,
+#custom-notification,
+#custom-power {
+    background-color: rgba(10, 10, 10, 0.5); /* Hitam Transparan Kalem */
+    color: #eeeeee; /* Putih agak soft */
+    padding: 2px 12px;
+    margin: 4px 3px;
+    border-radius: 8px; /* Sudut sedikit membulat tapi tegas */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Garis tepi super tipis */
+    box-shadow: none; /* Hilangkan bayangan biar flat/clean */
+}
+
+/* --- LOGO ARCH (Kiri) --- */
+#custom-logo {
+    color: #0686dc; /* Putih Polos */
+    opacity: 0.8;
+    padding-right: 15px;
+}
+
+/* --- WORKSPACES --- */
+#workspaces button {
+    padding: 0 6px;
+    color: #c2c2c2; /* Abu-abu kalau gak aktif */
+}
+#workspaces button.active {
+    color: #ffffff; /* Putih kalau aktif */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Glowing dikit */
+}
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* --- ISI GRUP (Hardware & Utils) --- */
+/* Reset background biar transparan ngikutin induknya */
+#cpu, #custom-gpu, #memory,
+#network, #bluetooth, #pulseaudio, #battery {
+    background-color: transparent;
+    padding: 0 6px;
+    color: #cccccc; /* Abu-abu terang */
+}
+
+/* Garis pemisah tipis antar info hardware */
+#cpu, #custom-gpu, #network, #bluetooth, #pulseaudio {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 10px;
+    margin-right: 4px;
+}
+
+/* Hapus border di elemen terakhir */
+#memory, #battery {
+    border-right: none;
+}
+
+/* --- INDIKATOR KHUSUS --- */
+/* Baterai cuma berwarna kalau kritis */
+#battery.charging { color: #2bff00; }
+#battery.critical { color: #ff5555; animation: blink 1s infinite; }
+
+/* Wifi kalau putus baru merah */
+#network.disconnected { color: #ff5555; }
+
+/* --- CLOCK --- */
+#clock {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: rgba(10, 10, 10, 0.2); /* Lebih transparan */
+    border: none;
+}
+
+/* --- TOMBOL POWER --- */
+#custom-power {
+    background-color: rgba(10, 10, 10, 0.5); /* Samain kayak yang lain */
+    color: #ffffff; /* Jangan merah, norak */
+    margin-right: 10px;
+}
+#custom-power:hover {
+    background-color: #ff5555; /* Pas di-hover baru merah */
+    color: #000000;
+}
+
+@keyframes blink {
+    to { color: #ffffff; }
+}

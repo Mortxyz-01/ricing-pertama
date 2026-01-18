@@ -1,0 +1,11 @@
+add_newline = false
+
+[character]
+success_symbol = "❯"
+error_symbol = "❯"
+
+[directory]
+style = "cyan"
+
+[git_branch]
+style = "purple"
